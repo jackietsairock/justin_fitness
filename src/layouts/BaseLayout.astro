@@ -1,0 +1,65 @@
+---
+import "../styles/global.css";
+
+const {
+  title = "Justin Fitness | 個人健身教練",
+  description = "Justin 個人健身教練，客製化訓練與營養規劃，打造專屬於你的強大體態。",
+  canonical = "https://justin-fitness.example.com",
+  keywords = [
+    "Justin",
+    "健身教練",
+    "健身房",
+    "私人訓練",
+    "體態雕塑",
+    "台北健身",
+  ].join(", "),
+  ogImage = "/images/justin-hero.svg",
+  structuredData = [],
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-Hant" class="dark scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Justin Fitness" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Justin Fitness" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    {structuredData.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+  </head>
+  <body class="bg-midnight text-gray-100 min-h-screen">
+    <div class="relative overflow-hidden">
+      <slot />
+    </div>
+  </body>
+</html>

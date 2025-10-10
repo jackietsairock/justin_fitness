@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7f1d1d" />
+      <stop offset="1" stop-color="#111827" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg4)" />
+  <text x="60" y="260" fill="#f87171" font-size="54" font-family="Inter, sans-serif">
+    InBody Check
+  </text>
+  <text x="60" y="340" fill="#f1f5f9" font-size="32" font-family="Inter, sans-serif">
+    Body Composition Tracking
+  </text>
+</svg>
