@@ -46,7 +46,7 @@ const SiteFooter = () => {
       </div>
       <div className="mt-8 border-t border-white/5 pt-6">
         <p className="text-center text-xs text-gray-600">
-          © {year} Justin Fitness Studio. All rights reserved.
+          © {year} <a href="https://jackiedesign.tw">Jackie設計</a>. All rights reserved.
         </p>
       </div>
     </footer>
