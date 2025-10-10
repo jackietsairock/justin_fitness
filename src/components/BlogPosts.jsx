@@ -17,7 +17,7 @@ const BlogPosts = ({ posts }) => {
             </p>
           </div>
           <a
-            href="https://instagram.com/justinfitness"
+            href="https://www.instagram.com/_justin1204/"
             className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2 text-sm font-semibold text-white transition hover:bg-primary-500/70"
           >
             追蹤更多內容
