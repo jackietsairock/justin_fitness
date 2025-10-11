@@ -1,7 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 
 const ContactSection = ({ contact, socials }) => {
+  const [formStatus, setFormStatus] = useState({ state: "idle", message: "" });
+  const scriptUrl = import.meta.env.PUBLIC_GOOGLE_APPS_SCRIPT_URL;
+
   if (!contact) return null;
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!scriptUrl) {
+      setFormStatus({
+        state: "error",
+        message: "尚未設定 Google Apps Script 連結，請通知網站管理員。",
+      });
+      return;
+    }
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    formData.append("submittedAt", new Date().toISOString());
+
+    setFormStatus({ state: "loading", message: "資料送出中，請稍候…" });
+
+    try {
+      const response = await fetch(scriptUrl, {
+        method: "POST",
+        body: formData,
+      });
+
+      const raw = await response.text();
+      let parsed = null;
+
+      try {
+        parsed = JSON.parse(raw);
+      } catch {
+        parsed = null;
+      }
+
+      if (!response.ok || (parsed && parsed.status && parsed.status !== "success")) {
+        throw new Error(parsed?.message || "Unexpected response from Apps Script");
+      }
+
+      form.reset();
+      setFormStatus({
+        state: "success",
+        message: "已成功送出，將在 24 小時內與您聯繫！",
+      });
+    } catch (error) {
+      console.error(error);
+      setFormStatus({
+        state: "error",
+        message: "送出失敗，請稍後再試或直接使用電話、Email 聯繫。",
+      });
+    }
+  };
 
   return (
     <section
@@ -84,7 +136,7 @@ const ContactSection = ({ contact, socials }) => {
         </div>
 
         <div className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-xl backdrop-blur">
-          <form className="space-y-5">
+          <form className="space-y-5" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="name" className="text-sm font-medium text-gray-200">
                 姓名
@@ -155,13 +207,24 @@ const ContactSection = ({ contact, socials }) => {
             </div>
             <button
               type="submit"
-              className="w-full rounded-full bg-primary-500 px-6 py-3 font-semibold text-white transition hover:bg-primary-400"
+              disabled={formStatus.state === "loading"}
+              className="w-full rounded-full bg-primary-500 px-6 py-3 font-semibold text-white transition hover:bg-primary-400 disabled:cursor-not-allowed disabled:bg-primary-500/60"
             >
-              送出預約需求
+              {formStatus.state === "loading" ? "送出中…" : "送出預約需求"}
             </button>
             <p className="text-xs text-gray-500">
               送出後 24 小時內會由專人與您聯繫確認體驗時間。
             </p>
+            {formStatus.state !== "idle" ? (
+              <p
+                className={`text-sm ${
+                  formStatus.state === "success" ? "text-emerald-300" : "text-red-300"
+                }`}
+                aria-live="polite"
+              >
+                {formStatus.message}
+              </p>
+            ) : null}
           </form>
         </div>
       </div>
