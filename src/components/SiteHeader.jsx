@@ -18,7 +18,7 @@ const SiteHeader = () => {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-10">
         <a href="#hero" className="flex items-center gap-3 text-white">
           <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-500/30 font-display text-xl text-primary-200">
-            JF
+            <img src="/favicon.svg" alt="Logo" className="w-full h-full" />
           </span>
           <div className="leading-tight">
             <span className="block text-sm font-semibold">

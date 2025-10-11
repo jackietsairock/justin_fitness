@@ -2,7 +2,7 @@ export const siteMeta = {
   title: "Justin Fitness | 個人健身教練與客製化訓練課程",
   description:
     "Justin 個人健身教練提供一對一客製化訓練、營養規劃與體態矯正，協助你在安全有效的訓練中打造理想體態。",
-  canonical: "https://justin-fitness.example.com",
+  canonical: "https://justin-fitness.vercel.app",
   keywords: [
     "Justin 健身教練",
     "個人健身教練",
@@ -11,6 +11,19 @@ export const siteMeta = {
     "體態雕塑",
     "重訓課程",
     "台北健身房",
+    "world gym",
+    "拳擊訓練",
+    "功能性訓練",
+    "營養指導",
+    "體態矯正",
+    "肌力訓練",
+    "健身計畫",
+    "健康生活",
+    "運動表現提升",
+    "減脂增肌",
+    "健身目標",
+    "專業教練",
+    "健身諮詢",
   ].join(", "),
 };
 
@@ -27,7 +40,7 @@ export const heroContent = {
     { label: "平均滿意度", value: "4.9", suffix: "/5" },
   ],
   backgroundVideo:
-    "https://storage.googleapis.com/justin-fitness/assets/justin-training-loop.mp4",
+    "/video.mp4",
 };
 
 export const programHighlights = [
@@ -77,28 +90,28 @@ export const latestNews = [
 
 export const galleryImages = [
   {
-    src: "/images/gallery/coaching-session-1.svg",
-    alt: "Justin 指導學員進行槓鈴硬舉的姿勢調整",
+    src: "/images/gallery/S__33718399_0.jpg",
+    alt: "Justin 指導學員進行背肌上拉的姿勢調整",
   },
   {
-    src: "/images/gallery/stretching-mobility.svg",
-    alt: "課後拉伸與動作修正輔助",
+    src: "/images/gallery/S__33718400_0.jpg",
+    alt: "Justin 指導學員進行拳擊教學的訓練",
   },
   {
-    src: "/images/gallery/small-group-training.svg",
-    alt: "小型團體訓練課程的熱身環節",
+    src: "/images/gallery/S__33718401_0.jpg",
+    alt: "Justin 指導學員進行拳擊教學的訓練",
   },
   {
-    src: "/images/gallery/inbody-check.svg",
-    alt: "會員進行 InBody 體成分檢測",
+    src: "/images/gallery/S__33718402_0.jpg",
+    alt: "Justin 指導學員進行槓鈴胸推的姿勢調整",
   },
   {
-    src: "/images/gallery/client-transformation.svg",
-    alt: "學員訓練成果前後對比展示區",
+    src: "/images/gallery/S__33718403_0.jpg",
+    alt: "Justin 指導學員進行拳擊教學的訓練",
   },
   {
-    src: "/images/gallery/gym-equipment.svg",
-    alt: "健身房內部專業訓練器材陳列",
+    src: "/images/gallery/S__33718404_0.jpg",
+    alt: "Justin 指導學員進行拳擊教學的訓練",
   },
 ];
 
@@ -161,8 +174,8 @@ export const googleReviews = [
 
 export const socialLinks = [
   { label: "Instagram", href: "https://instagram.com/justinfitness", handle: "@justinfitness" },
-  { label: "Facebook", href: "https://facebook.com/justinfitness", handle: "Justin Fitness" },
-  { label: "YouTube", href: "https://youtube.com/@justinfitness", handle: "Justin Fitness" },
+  // { label: "Facebook", href: "https://facebook.com/justinfitness", handle: "Justin Fitness" },
+  // { label: "YouTube", href: "https://youtube.com/@justinfitness", handle: "Justin Fitness" },
   { label: "LINE", href: "https://line.me/R/ti/p/@justinfitness", handle: "@justinfitness" },
 ];
 
