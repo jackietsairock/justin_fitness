@@ -176,7 +176,7 @@ export const socialLinks = [
   { label: "Instagram", href: "https://www.instagram.com/_justin1204/", handle: "https://www.instagram.com/_justin1204/" },
   // { label: "Facebook", href: "https://facebook.com/justinfitness", handle: "Justin Fitness" },
   // { label: "YouTube", href: "https://youtube.com/@justinfitness", handle: "Justin Fitness" },
-  { label: "LINE", href: "javascript:;", handle: "搜尋電話「0928434740」加入 蔡政良" },
+  { label: "LINE", href: "http://line.me/ti/p/@justin120404", handle: "Justin Fitness" },
 ];
 
 export const contactInfo = {
