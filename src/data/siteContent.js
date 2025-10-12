@@ -186,9 +186,9 @@ export const contactInfo = {
   googleMaps:
     "https://share.google/N4gCXKsRH9Az8K4DF",
   businessHours: [
-    { label: "週一至週五", value: "06:00 – 24:00" },
-    { label: "週六", value: "公休（預約制）" },
+    { label: "週二至週六", value: "06:00 – 24:00" },
     { label: "週日", value: "公休（預約制）" },
+    { label: "週一", value: "公休（預約制）" },
   ],
 };
 
