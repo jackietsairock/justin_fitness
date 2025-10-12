@@ -181,7 +181,7 @@ export const socialLinks = [
 
 export const contactInfo = {
   phone: "0928434740",
-  email: "jackietsairock@gmail.com",
+  email: "justine120404@gmail.com",
   address: "台北市大同區寧夏路 11 號 B1 (WG寧夏店)",
   googleMaps:
     "https://share.google/N4gCXKsRH9Az8K4DF",
