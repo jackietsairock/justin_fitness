@@ -118,30 +118,30 @@ export const galleryImages = [
 export const blogPosts = [
   {
     title: "減脂停滯期該怎麼突破？Justin 教練以科學化分析給你答案",
-    date: "2024-04-11",
+    date: "2025-10-12",
     category: "體態管理",
     description:
       "了解熱量缺口、訓練刺激與恢復曲線的關係，並掌握 4 個關鍵調整策略，讓減脂過程更有效率。",
     readingTime: "6 分鐘",
-    url: "#article-fat-loss-plateau",
+    url: "https://justin-fitness-life.blogspot.com/2025/10/blog-post.html",
   },
   {
     title: "從零開始的硬舉指南：保持脊椎安全、提升力量表現",
-    date: "2024-03-22",
+    date: "2025-10-12",
     category: "重量訓練",
     description:
       "掌握起始姿勢、握距與呼吸控制，搭配進階訓練模板，打造穩定安全的硬舉動作基本功。",
     readingTime: "8 分鐘",
-    url: "#article-deadlift-fundamentals",
+    url: "https://justin-fitness-life.blogspot.com/2025/10/blog-post_11.html",
   },
   {
     title: "忙碌上班族的一日高效營養攝取範例",
-    date: "2024-02-29",
+    date: "2025-10-12",
     category: "營養飲食",
     description:
       "拆解早餐、午餐、晚餐與加餐的實際案例，提供可快速準備又兼顧營養密度的飲食建議。",
     readingTime: "5 分鐘",
-    url: "#article-office-nutrition",
+    url: "https://justin-fitness-life.blogspot.com/2025/10/blog-post_75.html",
   },
 ];
 
