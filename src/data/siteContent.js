@@ -173,18 +173,18 @@ export const googleReviews = [
 ];
 
 export const socialLinks = [
-  { label: "Instagram", href: "https://instagram.com/justinfitness", handle: "@justinfitness" },
+  { label: "Instagram", href: "https://www.instagram.com/_justin1204/", handle: "https://www.instagram.com/_justin1204/" },
   // { label: "Facebook", href: "https://facebook.com/justinfitness", handle: "Justin Fitness" },
   // { label: "YouTube", href: "https://youtube.com/@justinfitness", handle: "Justin Fitness" },
-  { label: "LINE", href: "https://line.me/R/ti/p/@justinfitness", handle: "@justinfitness" },
+  { label: "LINE", href: "javascript:;", handle: "搜尋電話「0928434740」加入 蔡政良" },
 ];
 
 export const contactInfo = {
-  phone: "02-1234-5678",
+  phone: "0928434740",
   email: "coach@justinfitness.com",
-  address: "台北市信義區松德路 88 號 3 樓",
+  address: "台北市大同區寧夏路 11 號 B1 (WG寧夏店)",
   googleMaps:
-    "https://www.google.com/maps/place/%E5%8F%B0%E5%8C%97%E5%B8%82%E4%BF%A1%E7%BE%A9%E5%8D%80%E6%9D%BE%E5%BE%B7%E8%B7%AF88%E8%99%9F",
+    "https://share.google/N4gCXKsRH9Az8K4DF",
   businessHours: [
     { label: "週一至週五", value: "07:00 – 22:00" },
     { label: "週六", value: "08:00 – 20:00" },
@@ -203,10 +203,10 @@ export const structuredData = [
     email: contactInfo.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "松德路 88 號 3 樓",
+      streetAddress: "寧夏路 11 號 B1",
       addressLocality: "台北市",
-      addressRegion: "信義區",
-      postalCode: "110",
+      addressRegion: "大同區",
+      postalCode: "103",
       addressCountry: "TW",
     },
     openingHoursSpecification: contactInfo.businessHours.map((hour) => ({
