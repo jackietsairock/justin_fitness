@@ -173,10 +173,10 @@ export const googleReviews = [
 ];
 
 export const socialLinks = [
-  { label: "Instagram", href: "https://www.instagram.com/_justin1204/", handle: "https://www.instagram.com/_justin1204/" },
+  { label: "Instagram", href: "https://www.instagram.com/_justin1204/", handle: "Justin的IG" },
   // { label: "Facebook", href: "https://facebook.com/justinfitness", handle: "Justin Fitness" },
   // { label: "YouTube", href: "https://youtube.com/@justinfitness", handle: "Justin Fitness" },
-  { label: "LINE", href: "http://line.me/ti/p/justin120404", handle: "Justin Fitness" },
+  { label: "LINE", href: "http://line.me/ti/p/justin120404", handle: "Justin的LINE" },
 ];
 
 export const contactInfo = {
