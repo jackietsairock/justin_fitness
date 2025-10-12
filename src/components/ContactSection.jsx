@@ -1,45 +1,33 @@
 import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const ContactSection = ({ contact, socials }) => {
   const [formStatus, setFormStatus] = useState({ state: "idle", message: "" });
-  const scriptUrl = import.meta.env.PUBLIC_GOOGLE_APPS_SCRIPT_URL;
+  const serviceId = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
+  const publicKey = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
 
   if (!contact) return null;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!scriptUrl) {
+    if (!serviceId || !templateId || !publicKey) {
       setFormStatus({
         state: "error",
-        message: "尚未設定 Google Apps Script 連結，請通知網站管理員。",
+        message: "尚未設定 EmailJS 參數，請通知網站管理員。",
       });
       return;
     }
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    formData.append("submittedAt", new Date().toISOString());
+    const payload = Object.fromEntries(formData.entries());
+    payload.submittedAt = new Date().toISOString();
 
     setFormStatus({ state: "loading", message: "資料送出中，請稍候…" });
 
     try {
-      const response = await fetch(scriptUrl, {
-        method: "POST",
-        body: formData,
-      });
-
-      const raw = await response.text();
-      let parsed = null;
-
-      try {
-        parsed = JSON.parse(raw);
-      } catch {
-        parsed = null;
-      }
-
-      if (!response.ok || (parsed && parsed.status && parsed.status !== "success")) {
-        throw new Error(parsed?.message || "Unexpected response from Apps Script");
-      }
+      await emailjs.send(serviceId, templateId, payload, { publicKey });
 
       form.reset();
       setFormStatus({

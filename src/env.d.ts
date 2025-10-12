@@ -2,7 +2,9 @@
 /// <reference types="astro/client" />
 
 interface ImportMetaEnv {
-  readonly PUBLIC_GOOGLE_APPS_SCRIPT_URL?: string;
+  readonly PUBLIC_EMAILJS_SERVICE_ID?: string;
+  readonly PUBLIC_EMAILJS_TEMPLATE_ID?: string;
+  readonly PUBLIC_EMAILJS_PUBLIC_KEY?: string;
 }
 
 interface ImportMeta {
