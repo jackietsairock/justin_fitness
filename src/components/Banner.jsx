@@ -6,6 +6,7 @@ const Banner = ({ content }) => {
   return (
     <section
       id="hero"
+      aria-labelledby="hero-title"
       className="relative isolate overflow-hidden bg-gradient-to-b from-charcoal/70 via-midnight to-midnight py-24 sm:py-32"
     >
       <div className="absolute inset-0 -z-10 opacity-40">
@@ -27,7 +28,7 @@ const Banner = ({ content }) => {
           <span className="inline-flex items-center gap-2 rounded-full border border-primary-400/60 bg-primary-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-primary-200">
             {content.eyebrow}
           </span>
-          <h1 className="mt-6 font-display text-5xl text-white sm:text-6xl">
+          <h1 id="hero-title" className="mt-6 font-display text-5xl text-white sm:text-6xl">
             {content.title}
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-gray-300">

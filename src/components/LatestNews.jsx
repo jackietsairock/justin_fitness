@@ -6,13 +6,14 @@ const LatestNews = ({ items }) => {
   return (
     <section
       id="news"
+      aria-labelledby="news-title"
       className="relative py-20"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(239,68,68,0.35),_transparent_65%)] opacity-70" />
       <div className="relative mx-auto max-w-6xl px-6 sm:px-10">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="font-display text-3xl text-white sm:text-4xl">
+            <h2 id="news-title" className="font-display text-3xl text-white sm:text-4xl">
               最新動態
             </h2>
             <p className="mt-2 text-gray-300">
@@ -34,13 +35,16 @@ const LatestNews = ({ items }) => {
               key={item.title}
               className="flex flex-col rounded-2xl border border-white/5 bg-white/5 p-8 backdrop-blur"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-primary-200">
+              <time
+                dateTime={item.date}
+                className="text-xs font-semibold uppercase tracking-[0.28em] text-primary-200"
+              >
                 {new Date(item.date).toLocaleDateString("zh-TW", {
                   year: "numeric",
                   month: "2-digit",
                   day: "2-digit",
                 })}
-              </p>
+              </time>
               <h3 className="mt-3 text-xl font-semibold text-white">
                 {item.title}
               </h3>

@@ -6,11 +6,12 @@ const ProgramHighlights = ({ items }) => {
   return (
     <section
       id="programs"
+      aria-labelledby="programs-title"
       className="bg-charcoal/60 py-20 backdrop-blur-lg"
     >
       <div className="mx-auto max-w-5xl px-6 sm:px-10">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-3xl text-white sm:text-4xl">
+          <h2 id="programs-title" className="font-display text-3xl text-white sm:text-4xl">
             Justin 為你打造的訓練核心
           </h2>
           <p className="mt-4 text-gray-300">

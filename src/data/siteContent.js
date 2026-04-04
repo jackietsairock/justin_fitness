@@ -1,17 +1,32 @@
+const SITE_URL = "https://justin.jackiedesign.tw";
+const SITE_NAME = "Justin Fitness";
+const WEBSITE_ID = `${SITE_URL}#website`;
+const WEBPAGE_ID = `${SITE_URL}#webpage`;
+const BUSINESS_ID = `${SITE_URL}#business`;
+const TRAINER_ID = `${SITE_URL}#trainer`;
+const DEFAULT_OG_IMAGE = new URL("/ogImg.png", SITE_URL).toString();
+
 export const siteMeta = {
-  title: "Justin Fitness | 個人健身教練與客製化訓練課程",
+  siteName: SITE_NAME,
+  siteUrl: SITE_URL,
+  locale: "zh-Hant-TW",
+  title: "Justin Fitness | 台北個人健身教練與客製化一對一訓練課程",
   description:
-    "Justin 個人健身教練提供一對一客製化訓練、營養規劃與體態矯正，協助你在安全有效的訓練中打造理想體態。",
-  canonical: "https://justin-fitness.vercel.app",
+    "Justin 個人健身教練於台北大同區提供一對一客製化訓練、營養規劃、體態矯正與增肌減脂課程，協助你以安全有效的方式打造理想體態。",
+  canonical: SITE_URL,
+  ogImage: DEFAULT_OG_IMAGE,
+  ogImageAlt: "Justin Fitness 個人健身教練品牌形象與訓練服務展示",
   keywords: [
     "Justin 健身教練",
+    "台北健身教練",
+    "台北私人教練",
+    "大同區健身教練",
     "個人健身教練",
     "私人教練",
     "客製化訓練",
     "體態雕塑",
     "重訓課程",
-    "台北健身房",
-    "world gym",
+    "world gym 寧夏店",
     "拳擊訓練",
     "功能性訓練",
     "營養指導",
@@ -21,8 +36,6 @@ export const siteMeta = {
     "健康生活",
     "運動表現提升",
     "減脂增肌",
-    "健身目標",
-    "專業教練",
     "健身諮詢",
   ].join(", "),
 };
@@ -39,8 +52,7 @@ export const heroContent = {
     { label: "客戶轉型", value: "320+", suffix: "人" },
     { label: "平均滿意度", value: "4.9", suffix: "/5" },
   ],
-  backgroundVideo:
-    "/video.mp4",
+  backgroundVideo: "/video.mp4",
 };
 
 export const programHighlights = [
@@ -173,7 +185,11 @@ export const googleReviews = [
 ];
 
 export const socialLinks = [
-  { label: "Instagram", href: "https://www.instagram.com/_justin1204/", handle: "Justin的IG" },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/_justin1204/",
+    handle: "Justin的IG",
+  },
   // { label: "Facebook", href: "https://facebook.com/justinfitness", handle: "Justin Fitness" },
   // { label: "YouTube", href: "https://youtube.com/@justinfitness", handle: "Justin Fitness" },
   { label: "LINE", href: "http://line.me/ti/p/justin120404", handle: "Justin的LINE" },
@@ -183,8 +199,7 @@ export const contactInfo = {
   phone: "0928434740",
   email: "justine120404@gmail.com",
   address: "台北市大同區寧夏路 11 號 B1 (WG寧夏店)",
-  googleMaps:
-    "https://share.google/N4gCXKsRH9Az8K4DF",
+  googleMaps: "https://share.google/N4gCXKsRH9Az8K4DF",
   businessHours: [
     { label: "週二至週六", value: "06:00 – 24:00" },
     { label: "週日", value: "公休（預約制）" },
@@ -192,46 +207,145 @@ export const contactInfo = {
   ],
 };
 
+const averageRating = (
+  googleReviews.reduce((sum, review) => sum + review.rating, 0) / googleReviews.length
+).toFixed(1);
+
+const homeLastModified = [...latestNews, ...blogPosts, ...googleReviews]
+  .map((item) => item.date)
+  .sort()
+  .at(-1);
+
+export const sitemapEntries = [
+  {
+    path: "/",
+    lastModified: homeLastModified,
+    changeFrequency: "weekly",
+    priority: "1.0",
+  },
+];
+
 export const structuredData = [
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Justin Fitness",
-    image: "https://justin-fitness.example.com/images/justin-hero.svg",
+    "@type": "WebSite",
+    "@id": WEBSITE_ID,
+    name: siteMeta.siteName,
+    url: siteMeta.siteUrl,
+    description: siteMeta.description,
+    inLanguage: siteMeta.locale,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": WEBPAGE_ID,
     url: siteMeta.canonical,
+    name: siteMeta.title,
+    description: siteMeta.description,
+    isPartOf: {
+      "@id": WEBSITE_ID,
+    },
+    about: {
+      "@id": TRAINER_ID,
+    },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: siteMeta.ogImage,
+    },
+    inLanguage: siteMeta.locale,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": BUSINESS_ID,
+    name: siteMeta.siteName,
+    image: siteMeta.ogImage,
+    url: siteMeta.canonical,
+    description: siteMeta.description,
     telephone: contactInfo.phone,
     email: contactInfo.email,
+    hasMap: contactInfo.googleMaps,
     address: {
       "@type": "PostalAddress",
       streetAddress: "寧夏路 11 號 B1",
-      addressLocality: "台北市",
-      addressRegion: "大同區",
+      addressLocality: "大同區",
+      addressRegion: "台北市",
       postalCode: "103",
       addressCountry: "TW",
     },
-    openingHoursSpecification: contactInfo.businessHours.map((hour) => ({
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek:
-        hour.label === "週六"
-          ? ["Saturday"]
-          : hour.label.includes("週一至週五")
-          ? ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-          : ["Sunday"],
-      opens: hour.value === "公休（預約制）" ? "ByAppointmentOnly" : hour.value.split(" – ")[0],
-      closes: hour.value === "公休（預約制）" ? "ByAppointmentOnly" : hour.value.split(" – ")[1],
+    areaServed: {
+      "@type": "City",
+      name: "Taipei",
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        opens: "06:00",
+        closes: "23:59",
+      },
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: averageRating,
+      reviewCount: String(googleReviews.length),
+      bestRating: "5",
+      worstRating: "1",
+    },
+    review: googleReviews.map((review) => ({
+      "@type": "Review",
+      author: {
+        "@type": "Person",
+        name: review.reviewer,
+      },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: String(review.rating),
+        bestRating: "5",
+      },
+      reviewBody: review.content,
+      datePublished: review.date,
+    })),
+    makesOffer: programHighlights.map((item) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: item.name,
+        description: item.description,
+      },
     })),
     sameAs: socialLinks.map((link) => link.href),
   },
   {
     "@context": "https://schema.org",
-    "@type": "Service",
-    serviceType: "個人健身訓練",
-    provider: {
-      "@type": "Person",
-      name: "Justin",
-    },
-    areaServed: "Taipei, Taiwan",
+    "@type": "Person",
+    "@id": TRAINER_ID,
+    name: "Justin",
+    jobTitle: "個人健身教練",
     description:
-      "Justin 健身教練提供客製化一對一訓練、體態評估、矯正運動與營養指導服務。",
+      "Justin 為台北一對一健身教練，提供客製化訓練、體態評估、矯正運動與營養指導服務。",
+    worksFor: {
+      "@id": BUSINESS_ID,
+    },
+    knowsAbout: [
+      "一對一健身訓練",
+      "體態矯正",
+      "重量訓練",
+      "增肌減脂",
+      "營養規劃",
+      "功能性訓練",
+    ],
+    sameAs: socialLinks.map((link) => link.href),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Justin Fitness 訓練服務",
+    itemListElement: programHighlights.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      description: item.description,
+    })),
   },
 ];

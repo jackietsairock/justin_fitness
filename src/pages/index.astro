@@ -27,21 +27,26 @@ import SiteFooter from "../components/SiteFooter.jsx";
   title={siteMeta.title}
   description={siteMeta.description}
   canonical={siteMeta.canonical}
+  siteName={siteMeta.siteName}
   keywords={siteMeta.keywords}
+  ogImage={siteMeta.ogImage}
+  ogImageAlt={siteMeta.ogImageAlt}
+  locale={siteMeta.locale}
   structuredData={structuredData}
 >
   <SiteHeader client:load />
-  <main>
+  <main id="main-content">
     <Banner client:load content={heroContent} />
 
-    <section class="bg-midnight py-20">
+    <section class="bg-midnight py-20" aria-labelledby="about-heading">
       <div class="mx-auto flex max-w-5xl flex-col gap-10 px-6 sm:px-10 lg:flex-row lg:items-start">
         <div class="lg:w-2/5">
-          <h2 class="font-display text-3xl text-white sm:text-4xl">
-            Justin 是你的夥伴，不只是教練
+          <h2 id="about-heading" class="font-display text-3xl text-white sm:text-4xl">
+            台北大同區一對一私人教練，陪你建立長期訓練習慣
           </h2>
           <p class="mt-5 text-sm leading-relaxed text-gray-300">
-            Justin 擁有 AFAA 國際證照，在重量訓練、矯正運動與運動營養上具備扎實背景。
+            Justin 擁有 AFAA 國際證照，在重量訓練、矯正運動與運動營養上具備扎實背景，
+            於台北市大同區提供一對一私人教練、體態雕塑、增肌減脂與營養規劃服務，
             透過科學化訓練與生活管理，與你建立長期合作關係。
           </p>
         </div>

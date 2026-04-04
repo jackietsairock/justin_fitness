@@ -4,12 +4,12 @@ const BlogPosts = ({ posts }) => {
   if (!posts?.length) return null;
 
   return (
-    <section id="articles" className="relative py-20">
+    <section id="articles" aria-labelledby="articles-title" className="relative py-20">
       <div className="absolute inset-x-0 -top-10 h-40 bg-gradient-to-b from-primary-500/20 to-transparent blur-3xl" />
       <div className="relative mx-auto max-w-6xl px-6 sm:px-10">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="font-display text-3xl text-white sm:text-4xl">
+            <h2 id="articles-title" className="font-display text-3xl text-white sm:text-4xl">
               專業文章
             </h2>
             <p className="mt-2 text-gray-300">
@@ -41,13 +41,13 @@ const BlogPosts = ({ posts }) => {
                 {post.description}
               </p>
               <div className="mt-6 flex items-center justify-between text-xs text-gray-400">
-                <span>
+                <time dateTime={post.date}>
                   {new Date(post.date).toLocaleDateString("zh-TW", {
                     year: "numeric",
                     month: "short",
                     day: "numeric",
                   })}
-                </span>
+                </time>
                 <span>{post.readingTime}</span>
               </div>
               <a

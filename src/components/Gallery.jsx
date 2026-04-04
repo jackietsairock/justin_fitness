@@ -4,11 +4,11 @@ const Gallery = ({ images }) => {
   if (!images?.length) return null;
 
   return (
-    <section id="gallery" className="bg-charcoal/80 py-20">
+    <section id="gallery" aria-labelledby="gallery-title" className="bg-charcoal/80 py-20">
       <div className="mx-auto max-w-6xl px-6 sm:px-10">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="font-display text-3xl text-white sm:text-4xl">
+            <h2 id="gallery-title" className="font-display text-3xl text-white sm:text-4xl">
               訓練現場與成果
             </h2>
             <p className="mt-3 text-sm text-gray-300">

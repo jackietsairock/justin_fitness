@@ -3,7 +3,7 @@ import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  site: "https://justin-fitness.vercel.app",
+  site: "https://justin.jackiedesign.tw/",
   integrations: [
     react(),
     tailwind({

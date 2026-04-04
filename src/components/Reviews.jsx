@@ -45,11 +45,11 @@ const Reviews = ({ reviews }) => {
   if (!reviews?.length) return null;
 
   return (
-    <section id="reviews" className="bg-charcoal/70 py-20">
+    <section id="reviews" aria-labelledby="reviews-title" className="bg-charcoal/70 py-20">
       <div className="mx-auto max-w-6xl px-6 sm:px-10">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="font-display text-3xl text-white sm:text-4xl">
+            <h2 id="reviews-title" className="font-display text-3xl text-white sm:text-4xl">
               Google 評論｜看學員怎麼說
             </h2>
             <p className="mt-2 text-gray-300">
@@ -88,13 +88,16 @@ const Reviews = ({ reviews }) => {
               <p className="mt-5 text-sm leading-relaxed text-gray-200">
                 {review.content}
               </p>
-              <p className="mt-6 text-xs uppercase tracking-[0.28em] text-gray-500">
+              <time
+                dateTime={review.date}
+                className="mt-6 block text-xs uppercase tracking-[0.28em] text-gray-500"
+              >
                 {new Date(review.date).toLocaleDateString("zh-TW", {
                   year: "numeric",
                   month: "short",
                   day: "numeric",
                 })}
-              </p>
+              </time>
             </article>
           ))}
         </div>

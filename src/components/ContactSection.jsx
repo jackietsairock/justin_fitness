@@ -46,6 +46,7 @@ const ContactSection = ({ contact, socials }) => {
   return (
     <section
       id="contact"
+      aria-labelledby="contact-title"
       className="relative overflow-hidden bg-gradient-to-br from-primary-500/20 via-midnight to-midnight py-20"
     >
       <div className="absolute inset-0 -z-10 opacity-40">
@@ -55,7 +56,7 @@ const ContactSection = ({ contact, socials }) => {
 
       <div className="mx-auto grid max-w-6xl gap-12 px-6 sm:px-10 lg:grid-cols-2">
         <div>
-          <h2 className="font-display text-3xl text-white sm:text-4xl">
+          <h2 id="contact-title" className="font-display text-3xl text-white sm:text-4xl">
             預約 Justin，一起打造強大體態
           </h2>
           <p className="mt-4 text-gray-300">
@@ -67,7 +68,7 @@ const ContactSection = ({ contact, socials }) => {
               <p className="text-xs uppercase tracking-[0.28em] text-primary-200">
                 聯絡資訊
               </p>
-              <div className="mt-3 space-y-2 text-sm text-gray-200">
+              <address className="mt-3 space-y-2 text-sm not-italic text-gray-200">
                 <a href={`tel:${contact.phone}`} className="block hover:text-primary-200">
                   電話：{contact.phone}
                 </a>
@@ -82,7 +83,7 @@ const ContactSection = ({ contact, socials }) => {
                 >
                   地址：{contact.address}
                 </a>
-              </div>
+              </address>
             </div>
 
             <div>

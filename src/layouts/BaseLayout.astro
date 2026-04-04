@@ -4,7 +4,8 @@ import "../styles/global.css";
 const {
   title = "Justin Fitness | 個人健身教練",
   description = "Justin 個人健身教練，客製化訓練與營養規劃，打造專屬於你的強大體態。",
-  canonical = "https://justin-fitness.vercel.app",
+  canonical = "https://justin.jackiedesign.tw",
+  siteName = "Justin Fitness",
   keywords = [
     "Justin",
     "蔡政良",
@@ -15,12 +16,28 @@ const {
     "台北健身",
   ].join(", "),
   ogImage = "/ogImg.png",
+  ogImageAlt = "Justin Fitness 個人健身教練品牌形象與訓練服務展示",
+  locale = "zh-Hant-TW",
+  robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+  noindex = false,
+  ogType = "website",
   structuredData = [],
 } = Astro.props;
+
+const siteUrl = Astro.site?.toString() ?? canonical;
+const canonicalUrl = new URL(canonical, siteUrl).toString();
+const ogImageUrl = new URL(ogImage, siteUrl).toString();
+const robotsContent = noindex ? "noindex, nofollow" : robots;
+const schemaList = Array.isArray(structuredData)
+  ? structuredData.filter(Boolean)
+  : structuredData
+  ? [structuredData]
+  : [];
+const sitemapUrl = new URL("/sitemap.xml", siteUrl).toString();
 ---
 
 <!doctype html>
-<html lang="zh-Hant" class="dark scroll-smooth">
+<html lang={locale} class="dark scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,17 +46,24 @@ const {
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <meta name="author" content="Justin Fitness" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Justin Fitness" />
+    <meta name="robots" content={robotsContent} />
+    <meta name="googlebot" content={robotsContent} />
+    <meta name="theme-color" content="#020617" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="zh_TW" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
-    <link rel="canonical" href={canonical} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" type="application/xml" href={sitemapUrl} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link
       rel="preconnect"
@@ -65,7 +89,7 @@ const {
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8503131090822147"
      crossorigin="anonymous"></script>
-    {structuredData.map((schema) => (
+    {schemaList.map((schema) => (
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     ))}
   </head>
