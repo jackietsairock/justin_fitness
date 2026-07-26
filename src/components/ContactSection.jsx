@@ -1,46 +1,42 @@
-import React, { useState } from "react";
-import emailjs from "@emailjs/browser";
+import React from "react";
 
 const ContactSection = ({ contact, socials }) => {
-  const [formStatus, setFormStatus] = useState({ state: "idle", message: "" });
-  const serviceId = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
-  const templateId = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
-  const publicKey = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
-
   if (!contact) return null;
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    if (!serviceId || !templateId || !publicKey) {
-      setFormStatus({
-        state: "error",
-        message: "尚未設定 EmailJS 參數，請通知網站管理員。",
-      });
-      return;
-    }
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const payload = Object.fromEntries(formData.entries());
-    payload.submittedAt = new Date().toISOString();
+    const name = formData.get("name")?.toString().trim() ?? "";
+    const phone = formData.get("phone")?.toString().trim() ?? "";
+    const email = formData.get("email")?.toString().trim() ?? "";
+    const goal = formData.get("goal")?.toString() ?? "";
+    const message = formData.get("message")?.toString().trim() ?? "";
+    const goalLabels = {
+      "fat-loss": "減脂塑形",
+      muscle: "增肌強化",
+      corrective: "體態矯正",
+      performance: "運動表現提升",
+      others: "其他",
+    };
+    const goalLabel = goalLabels[goal] ?? "未指定";
+    const subject = `[網站諮詢] ${name}－${goalLabel}`;
+    const body = [
+      "諮詢報名資料",
+      "",
+      `姓名：${name}`,
+      `聯絡電話：${phone}`,
+      `Email：${email || "未填寫"}`,
+      `訓練目標：${goalLabel}`,
+      "",
+      "想說的話：",
+      message || "未填寫",
+    ].join("\n");
 
-    setFormStatus({ state: "loading", message: "資料送出中，請稍候…" });
-
-    try {
-      await emailjs.send(serviceId, templateId, payload, { publicKey });
-
-      form.reset();
-      setFormStatus({
-        state: "success",
-        message: "已成功送出，將在 24 小時內與您聯繫！",
-      });
-    } catch (error) {
-      console.error(error);
-      setFormStatus({
-        state: "error",
-        message: "送出失敗，請稍後再試或直接使用電話、Email 聯繫。",
-      });
-    }
+    window.location.href = `mailto:justine120404@gmail.com?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
   };
 
   return (
@@ -196,24 +192,13 @@ const ContactSection = ({ contact, socials }) => {
             </div>
             <button
               type="submit"
-              disabled={formStatus.state === "loading"}
-              className="w-full rounded-full bg-primary-500 px-6 py-3 font-semibold text-white transition hover:bg-primary-400 disabled:cursor-not-allowed disabled:bg-primary-500/60"
+              className="w-full rounded-full bg-primary-500 px-6 py-3 font-semibold text-white transition hover:bg-primary-400"
             >
-              {formStatus.state === "loading" ? "送出中…" : "送出預約需求"}
+              開啟 Email 送出預約
             </button>
             <p className="text-xs text-gray-500">
-              送出後 24 小時內會由專人與您聯繫確認體驗時間。
+              點擊後會開啟您的郵件程式，請確認內容並按下寄出。
             </p>
-            {formStatus.state !== "idle" ? (
-              <p
-                className={`text-sm ${
-                  formStatus.state === "success" ? "text-emerald-300" : "text-red-300"
-                }`}
-                aria-live="polite"
-              >
-                {formStatus.message}
-              </p>
-            ) : null}
           </form>
         </div>
       </div>
